@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Compass Game</title>
+  </head>
+    <style>
+      table {
+        padding: 10px;
+        margin: 10px;
+      }
+      td {
+        font-size: 30px;
+        font-weight: bold;
+        color: red;
+        text-align: center;
+        height: 65px;
+        width: 65px;
+      }
+      .diagonal {transform: rotate(-45deg);}
+    </style>
+  <body>
+
+    <h1>Compass Game</h1>
+
+    <p>
+      The direction letters on the "compass" are scrambled.
+      Press the arrows to properly position the direction letters.
+    </p>
+
+    <table border=0>
+      <tr>
+        <td style="text-align: right; vertical-align: center;">
+          <button type="button" class="diagonal" onclick="NW_change()"><==></td>
+        <td id="cellNorth">E</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="cellWest">S</td>
+        <td><button type="button" onclick="WE_change()"><==></td>
+        <td id="cellEast">N</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td id="cellSouth">W</td>
+        <td style="text-align: left; vertical-align: top;">
+          <button type="button" class="diagonal" onclick="ES_change()"><==></td>
+      </tr>
+    </table>
+
+    <p id="result"></p>
+
+    <p>
+      To restart the game, press <i>Restart</i>, enter N, S, E, and W in any
+      order in the boxes below, and then press <i>Update</i>.
+    </p>
+
+    <form>
+      <button type="button" id="btnRestart"
+        onclick="btnRestartHandler()"disabled>Restart</button><br><br>
+
+      <label for="tbxTop">Top</label>
+      <input type="text" id="tbxTop" placeholder="S" size="1"
+        maxlength="1" disabled>
+
+      <label for="tbxLeft">Left</label>
+      <input type="text" id="tbxLeft" placeholder="E" size="1"
+        maxlength="1" disabled>
+
+      <label for="tbxRight">Right</label>
+      <input type="text" id="tbxRight" placeholder="W" size="1"
+        maxlength="1" disabled>
+
+      <label for="tbxBottom">Bottom</label>
+      <input type="text" id="tbxBottom" placeholder="N" size="1"
+        maxlength="1" disabled>
+      <br><br>
+
+      <button type="button" id="btnUpdate"
+        onclick="btnUpdateHandler()"disabled>Update</button>
+      <br><br>
+    </form>
+
+    <script>
+
+      var cellNorth = document.getElementById('cellNorth');
+      var cellWest = document.getElementById('cellWest');
+      var cellEast = document.getElementById('cellEast');
+      var cellSouth = document.getElementById('cellSouth');
+
+      var result = document.getElementById('result')
+
+
+      var tbxTop = document.getElementById('tbxTop');
+      var tbxLeft = document.getElementById('tbxLeft');
+      var tbxRight = document.getElementById('tbxRight');
+      var tbxBottom = document.getElementById('tbxBottom');
+
+      function NW_change() {
+        var cellNorth = document.getElementById('cellNorth').innerHTML;
+        var cellWest = document.getElementById('cellWest').innerHTML;
+        var temp = cellNorth;
+        cellNorth = cellWest;
+        cellWest = temp;
+      }
+
+      function WE_change() {
+        var cellWest = document.getElementById('cellWest').innerHTML;
+        var cellEast = document.getElementById('cellEast').innerHTML;
+        var temp = cellWest;
+        cellWest = cellEast;
+        cellEast = temp;
+      }
+
+      function ES_change() {
+        var cellEast = document.getElementById('cellEast').innerHTML;
+        var cellSouth = document.getElementById('cellSouth').innerHTML;
+        var temp = cellEast;
+        cellEast = cellSouth;
+        cellSouth = temp;
+      }
+
+    </script>
+
+  </body>
+</html>
