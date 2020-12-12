@@ -121,12 +121,6 @@
         cellSouth = temp;
       }
 
-      function myFunction() {
-        var time = new Date().getHours();
-        if (time < 20) {
-          document.getElementById("demo").innerHTML = "Good day";
-          }
-
 //      function isWon() {
 //        if (
 //          cellNorth.innerHTML === 'N' &&
