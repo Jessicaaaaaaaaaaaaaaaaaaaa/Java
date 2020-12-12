@@ -90,6 +90,7 @@
 
       var result = document.getElementById('result')
 
+      var buttons = document.querySelectorAll('query')
 
       var tbxTop = document.getElementById('tbxTop');
       var tbxLeft = document.getElementById('tbxLeft');
@@ -119,6 +120,32 @@
         cellEast = cellSouth;
         cellSouth = temp;
       }
+
+      function myFunction() {
+        var time = new Date().getHours();
+        if (time < 20) {
+          document.getElementById("demo").innerHTML = "Good day";
+          }
+
+//      function isWon() {
+//        if (
+//          cellNorth.innerHTML === 'N' &&
+//          cellWest.innerHTML === 'W' &&
+//          cellEast.innerHTML === 'E' &&
+//          cellSouth.innerHTML === 'S'
+//        ) {
+//          result.innerHTML ="WINNER WINNER CHICKEN DINNER!!! GAME OVER";
+//        }
+
+//      }
+
+          // button[0] disabled = true;
+          // button[1] disabled = true;
+          // button[2] disabled = true;
+          // button[id="btnRestart"] disabled = false;
+          // button[id="btnUpdate"] disabled = false;
+
+
 
     </script>
 
