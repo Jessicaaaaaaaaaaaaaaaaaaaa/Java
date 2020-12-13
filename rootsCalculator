@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Roots Calculator</title>
+  </head>
+  <body>
+
+    <h1>Quadratic Equation Roots Calculator</h1>
+
+    <p>
+      This web page finds the roots of a polynomial equation of the following form:<br>
+
+      <i>ax<sup>2</sup></i>+<i>bx</i>+<i>c</i>=0<br><br>
+
+      <i>a, b, </i>and <i>c </i>must be integers between -99 and +99, and
+      <i>a</i> must be non-zero.<br><br>
+    </p>
+
+    <form>
+      <label for="firstBox">a:</label>
+      <input type="number" id="firstBox" name="firstBox" size="7">
+
+      <label for="secondBox">b:</label>
+      <input type="number" id="secondBox" name="secondBox" size="7">
+
+      <label for="thirdBox">c:</label>
+      <input type="number" id="thirdBox" name="thirdBox" size="7"><br><br>
+
+      <button type="button" onclick="CalcRoots()">Calculate roots
+
+      <p id="result"></p>
+    </form>
+
+    <script>
+
+    var x = CalcRoots(firstBox, secondBox, thirdBox);
+    document.getElementById("result").innerHTML = x;
+
+    function CalcRoots() {
+      return p1 * p2;
+    }
+
+
+    </script>
+
+  </body>
+</html>
