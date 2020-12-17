@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Compass Game</title>
+  </head>
+    <style>
+      table {
+        padding: 10px;
+        margin: 10px;
+      }
+
+      td {
+        font-size: 35px;
+        font-weight: bold;
+        color: red;
+        text-align: center;
+        height: 65px;
+        width: 65px;
+      }
+
+      button {
+        text-align: right;
+        vertical-align: center;
+      }
+
+      .diagonal {transform: rotate(-45deg);}
+    </style>
+  <body>
+
+    <h1>Compass Game</h1>
+
+    <p>
+      The direction letters on the "compass" are scrambled.
+      Press the arrows to properly position the direction letters.
+    </p>
+
+    <table>
+
+      <tr>
+        <td><input id="button1" class="diagonal" type="button" value= "<==>" onclick="NW_change()"></td>
+        <td id="cellNorth">E</td>
+        <td></td>
+      </tr>
+
+      <tr>
+        <td id="cellWest">S</td>
+        <td><input id="button2" type="button" value= "<==>" onclick="WE_change()"></td>
+        <td id="cellEast">N</td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td id="cellSouth">W</td>
+        <td><input id="button3" class="diagonal" type="button" value= "<==>" onclick="SE_change()"></td>
+      </tr>
+
+    </table>
+
+    <p id="result"></p>
+
+    <p>
+      To restart the game, press <i>Restart</i>, enter N, S, E, and W in any
+      order in the boxes below, and then press <i>Update</i>.
+    </p>
+
+    <input id="btnRestart" type="button" value="Restart"  onclick="btnRestart()"disabled><br><br>
+
+
+    Top: <input type="text" id="tbxTop" size="1" disabled>
+    Left: <input type="text" id="tbxLeft" size="1" disabled>
+    Right: <input type="text" id="tbxRight" size="1" disabled>
+    Bottom: <input type="text" id="tbxBottom" size="1" disabled>
+
+    <br><br>
+
+    <input id="btnUpdate" type="button" value="Update"  onclick="btnUpdate()"disabled><br><br>
+
+    <br><br>
+
+    <script>
+
+    let restart = document.getElementById("btnRestart");
+    let result = document.getElementById("result");
+    let update = document.getElementById("btnUpdate")
+
+    function NW_change() {
+
+      let a = document.getElementById("cellNorth").innerHTML;
+      let b = document.getElementById("cellWest").innerHTML;
+      let temp = a;
+      a = b;
+      b = temp;
+
+      document.getElementById("cellNorth").innerHTML = a;
+      document.getElementById("cellWest").innerHTML = b;
+
+      gameWon();
+
+    }
+
+    function WE_change() {
+
+      let b = document.getElementById("cellWest").innerHTML;
+      let c = document.getElementById("cellEast").innerHTML;
+      let temp = b;
+      b = c;
+      c = temp;
+
+      document.getElementById("cellWest").innerHTML = b;
+      document.getElementById("cellEast").innerHTML = c;
+
+      gameWon();
+
+    }
+
+    function SE_change() {
+
+      let c = document.getElementById("cellEast").innerHTML;
+      let d = document.getElementById("cellSouth").innerHTML;
+      let temp = c;
+      c = d;
+      d = temp;
+
+      document.getElementById("cellEast").innerHTML = c;
+      document.getElementById("cellSouth").innerHTML = d;
+
+      gameWon();
+    }
+
+    function gameWon() {
+
+      if (
+        document.getElementById('cellNorth').innerHTML === "N" &&
+        document.getElementById('cellWest').innerHTML === "W" &&
+        document.getElementById('cellEast').innerHTML === "E" &&
+        document.getElementById('cellSouth').innerHTML === "S"
+      ) {
+
+        document.getElementById("result").innerHTML = "You won!";
+        restart.disabled = false;
+
+      }
+    }
+
+    function btnRestart() {
+
+      document.getElementById('cellNorth').innerHTML = "";
+      document.getElementById('cellWest').innerHTML = "";
+      document.getElementById('cellEast').innerHTML = "";
+      document.getElementById('cellSouth').innerHTML = "";
+
+      document.getElementById ('btnUpdate').disabled = false;
+
+      document.getElementById ('tbxTop').disabled = false;
+      document.getElementById ('tbxLeft').disabled = false;
+      document.getElementById ('tbxRight').disabled = false;
+      document.getElementById ('tbxBottom').disabled = false;
+
+      restart.disabled = true;
+      result.innerHTML = '';
+
+    }
+
+    function btnUpdate() {
+
+      let newN = document.getElementById('tbxTop').value;
+      let newW = document.getElementById('tbxLeft').value;
+      let newE = document.getElementById('tbxRight').value;
+      let newS = document.getElementById('tbxBottom').value;
+
+      document.getElementById("cellNorth").innerHTML = newN;
+      document.getElementById("cellWest").innerHTML = newW;
+      document.getElementById("cellEast").innerHTML = newE;
+      document.getElementById("cellSouth").innerHTML = newS;
+
+      update.disabled = true;
+
+      tbxTop.disabled = true;
+      tbxLeft.disabled = true;
+      tbxRight.disabled = true;
+      tbxBottom.disabled = true;
+
+    }
+
+    </script>
+
+  </body>
+</html>
