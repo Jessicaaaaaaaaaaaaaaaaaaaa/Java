@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Roots Calculator</title>
+
+  </head>
+  <body>
+
+    <h1>Quadratic Equation Roots Calculator</h1>
+
+    <p>
+      This web page finds the roots of a polynomial equation of the following form:<br>
+
+      <i>ax<sup>2</sup></i>+<i>bx</i>+<i>c</i>=0<br><br>
+
+      <i>a, b, </i>and <i>c </i>must be integers between -99 and +99, and
+      <i>a</i> must be non-zero.<br><br>
+    </p>
+
+    <form>
+      <label for="boxA">a:</label>
+      <input id="boxA" type="number" min="-99" max="99">
+
+      <label for="boxB">b:</label>
+      <input id="boxB" type="number" min="-99" max="99">
+
+      <label for="boxC">c:</label>
+      <input id="boxC" type="number" min="-99" max="99">
+      <br><br>
+
+    	<input type="button" value="Calculate roots" onclick="calculateRoots()">
+      <br><br>
+    </form>
+
+    <var id="outputMessage"></var>
+
+    <script>
+
+    		function calculateRoots() {
+
+
+    			let result = document.getElementById("outputMessage");
+	        let inputA = document.getElementById("boxA").value;
+    			let inputB = document.getElementById("boxB").value;
+    			let inputC = document.getElementById("boxC").value;
+
+    			let D = (+inputB * +inputB) - (4 * +inputA * +inputC);
+
+          if (
+             +inputA < -99 || +inputA > +99 || +inputA == 0  || !Number.isInteger(+inputA) ||
+             +inputB < -99 || +inputB > +99 || !Number.isInteger(+inputB) ||
+             +inputC < -99 || +inputC > +99 || !Number.isInteger(+inputC)
+          )
+
+          {
+          let alertMsg = "";
+
+    			if ( +inputA < -99 || +inputA > +99 || +inputA == 0 || !Number.isInteger(+inputA) ) {
+
+              alertMsg += "Invalid entry for a. Must be a non-zero integer between -99 and +99.\n";
+              document.getElementById("boxA").style.borderColor = 'red';
+
+      		}
+
+    			if ( +inputB < -99 || +inputB > +99 || !Number.isInteger(+inputB)) {
+
+              alertMsg += "Invalid entry for b. Must be a integer between -99 and +99.\n";
+              document.getElementById("boxB").style.borderColor = 'red';
+
+    			}
+
+    			if ( +inputC < -99 || +inputC > +99 || !Number.isInteger(+inputC)) {
+
+              alertMsg += "Invalid entry for c. Must be a integer between -99 and +99.\n";
+              document.getElementById("boxC").style.borderColor = 'red';
+    			}
+
+          window.alert(alertMsg);
+
+          return;
+
+      }
+
+          else {
+            document.getElementById("boxA").style.borderColor = '';
+            document.getElementById("boxB").style.borderColor = '';
+            document.getElementById("boxC").style.borderColor = '';
+      }
+
+    			if ( D < 0 ) {
+
+    				result.innerHTML = "Solution: x's roots are imaginary";
+    			}
+
+    			if ( D === 0 ) {
+
+    				let singleRoot = -inputB / ( 2 * +inputA );
+
+    				result.innerHTML = "Solution: x = " + singleRoot;
+    			}
+
+    			if ( D > 0 ) {
+
+    				let root1 = ( -inputB + Math.sqrt(D) ) / (2 * +inputA);
+    				let root2 = ( -inputB - Math.sqrt(D) ) / (2 * +inputA);
+
+    				result.innerHTML = "Solution: x = " + root1 + ", x = " + root2;
+    			}
+
+
+    		}
+
+    </script>
+
+  </body>
+</html>
