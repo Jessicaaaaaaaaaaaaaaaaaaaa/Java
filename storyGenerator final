@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Story Generator 2</title>
+  <style>
+    body {
+			font-family: times;
+		}
+
+		form {
+			text-align: right;
+			width: 300px;
+		}
+
+    input {
+      padding: 2px;
+      margin: 2px 0;
+      box-sizing: border-box;
+		}
+
+		#fontDone {
+
+			font-family: tahoma;
+		}
+
+		.storyFont {
+			font-family: "Comic Sans MS";
+			color:blue;
+		}
+
+  </style>
+</head>
+
+<body>
+
+	<section id="mainInput">
+
+		<h1>Story Generator</h1>
+
+		<p>Enter appropriate values in all the text boxes. Then click the <span id="fontDone">Done</span> button to generate a story with your entered values plugged into it.</p> <br>
+		<br>
+
+		<div>
+
+			<form name="inputForm">
+
+				<label for="inputA">noun: </label>
+				<input id="inputA"> <br>
+				<label for="inputB">past tense verb: </label>
+				<input id="inputB"> <br>
+				<label for="inputC">adjective: </label>
+				<input id="inputC"> <br>
+				<label for="inputD">past tense verb: </label>
+				<input id="inputD"> <br>
+				<label for="inputE">adjective: </label>
+				<input id="inputE"> <br>
+
+			</form>
+
+		</div>
+
+		<br>
+
+		<input type="button" value="Done" id="buttonDone" onclick= "doneHandler()">
+		<input type="button" value="Reset" id= "buttonReset" onclick= "resetHandler()">
+
+	</section>
+
+
+	<section id="mainStory">
+
+		<div class = "storyFont">
+			It was a dark and stormy night. A shot rang out! A
+			 <span class="missingText">&lt;missing text&gt;</span> slammed. The maid
+			 <span class="missingText">&lt;missing text&gt;</span>. Suddenly, a
+			 <span class="missingText">&lt;missing text&gt;</span> ship appeared on the horizon! While millions of people
+			 <span class="missingText">&lt;missing text&gt;</span>, the king lived in luxury. Meanwhile, on a
+			 <span class="missingText">&lt;missing text&gt;</span> farm in Kansas, a boy was growing up.
+
+			<br><br>
+
+		The End</div>
+
+		<br><br>
+
+		<input type="button" value="Return" id="buttonReturn" onclick= "returnHandler()">
+
+	</section>
+
+
+
+	<script type="text/javascript">
+
+
+		let input = document.getElementById("mainInput");
+		let story = document.getElementById("mainStory");
+
+		story.style.display = "none";
+
+
+		function doneHandler() {
+
+			story.style.display = "block";
+			input.style.display = "none";
+
+			let missing = document.querySelectorAll(".missingText");
+
+
+				for(let i = 0; i < document.inputForm.elements.length; ++i) {
+
+					let mt2 = document.inputForm.elements[i].value;
+
+					if(mt2 === '' )	{
+						mt2 = '<span style="color: red"> &lt; missing text &gt; </span>';
+					}
+
+					missing[i].innerHTML = mt2;
+
+			}
+
+		}
+
+		function returnHandler() {
+
+			story.style.display = "none";
+			input.style.display = "block";
+		}
+
+		function resetHandler() {
+
+			location.reload();
+
+		}
+
+
+	</script>
+
+</body>
+</html>
